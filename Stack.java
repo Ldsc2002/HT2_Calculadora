@@ -9,31 +9,26 @@ public class Stack<E> implements iStack<E> {
 
     @Override
     public void push(E item) {
-        // TODO Auto-generated method stub
-        
+        datos.add(item);     
     }
 
     @Override
-    public E peek() {
-        // TODO Auto-generated method stub
-        return null;
+    public E peek() {  
+        return(datos.remove(datos.size() - 1));
     }
 
     @Override
     public boolean empty() {
-        // TODO Auto-generated method stub
-        return false;
+        return datos.isEmpty();
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        return 0;
+        return datos.size();
     }
 
     @Override
     public E pop() {
-        // TODO Auto-generated method stub
-        return null;
+        return datos.remove(datos.size() - 1);
     }
 }
