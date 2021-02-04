@@ -1,4 +1,4 @@
-public class Calculadora implements icalculadora {
+public class Calculadora implements iCalculadora {
     @Override
     public int resta(int x, int y) {
         return (x - y);
@@ -26,7 +26,7 @@ public class Calculadora implements icalculadora {
     }
 
     @Override
-    public int operar(Stack x) {
+    public int operar(iStack x) {
         // TODO Auto-generated method stub
         return 0;
     }

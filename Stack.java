@@ -1,20 +1,39 @@
-public interface Stack<E> {
-   public void push(E item);
-   // pre: 
-   // post: item is added to stack
-   // will be popped next if no intervening push
-   
-   public E pop();
-   // pre: stack is not empty
-   // post: most recently pushed item is removed and returned
-   
-   public E peek();
-   // pre: stack is not empty
-   // post: top value (next to be popped) is returned
-   
-   public boolean empty();
-   // post: returns true if and only if the stack is empty
-   
-   public int size();
-   // post: returns the number of elements in the stack
+import java.util.Vector;
+
+public class Stack<E> implements iStack<E> {
+    private Vector<E> datos;
+
+    public Stack() {
+        datos = new Vector<E>();
+    }
+
+    @Override
+    public void push(E item) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public E peek() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean empty() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public int size() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public E pop() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
