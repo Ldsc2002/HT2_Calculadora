@@ -31,8 +31,4 @@ public class Stack<E> implements iStack<E> {
     public E pop() {
         return datos.remove(datos.size() - 1);
     }
-
-    public void print() { //TODO borrar
-        System.out.println(datos.toString());
-    }
 }
