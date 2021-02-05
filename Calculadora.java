@@ -24,11 +24,11 @@ public class Calculadora implements iCalculadora {
     }
 
     @Override
-    public String decode(String a) {
+    public String decode(String file) {
         Scanner archivo = new Scanner(System.in);
 
         try {
-            archivo = new Scanner(new File(a));
+            archivo = new Scanner(new File(file));
         } catch(FileNotFoundException e) {
             System.out.println("Archivo no encontrado");
         }    
@@ -41,13 +41,19 @@ public class Calculadora implements iCalculadora {
             Lineas.push(x);
         }
 
+        Stack<String> LineasInverso = new Stack<String>();
+
+        while(!Lineas.empty()) {
+            LineasInverso.push(Lineas.pop());
+        }
+
         String result = "";
 
-        while(Lineas.size() > 0) {
-            String temp = Lineas.pop();
+        while(LineasInverso.size() > 0) {
+            String Linea = LineasInverso.pop();
             Stack<String> Datos = new Stack<String>();
 
-            Scanner scanLinea = new Scanner(temp);
+            Scanner scanLinea = new Scanner(Linea);
 
             while(scanLinea.hasNext()) {
                 String x = scanLinea.next();
@@ -72,7 +78,7 @@ public class Calculadora implements iCalculadora {
 
     @Override
     public int operar(iStack<String> Datos) {
-        Stack<String> temp = new Stack<String>();
+        Stack<String> enOperacion = new Stack<String>();
         
         while (!Datos.empty()) {
             String x = Datos.pop();
@@ -83,42 +89,42 @@ public class Calculadora implements iCalculadora {
 
             switch (x) {
                 case "+":
-                    num1 = Integer.parseInt(temp.pop());
-                    num2 = Integer.parseInt(temp.pop());
+                    num1 = Integer.parseInt(enOperacion.pop());
+                    num2 = Integer.parseInt(enOperacion.pop());
 
                     res = num1 + num2;
 
-                    temp.push(Integer.toString(res));
+                    enOperacion.push(Integer.toString(res));
 
                     break;
 
                 case "-":
-                    num1 = Integer.parseInt(temp.pop());
-                    num2 = Integer.parseInt(temp.pop());
+                    num1 = Integer.parseInt(enOperacion.pop());
+                    num2 = Integer.parseInt(enOperacion.pop());
 
                     res = num1 - num2;
 
-                    temp.push(Integer.toString(res));
+                    enOperacion.push(Integer.toString(res));
 
                     break;
 
                 case "/":
-                    num1 = Integer.parseInt(temp.pop());
-                    num2 = Integer.parseInt(temp.pop());
+                    num1 = Integer.parseInt(enOperacion.pop());
+                    num2 = Integer.parseInt(enOperacion.pop());
 
                     res = num1 / num2;
 
-                    temp.push(Integer.toString(res));
+                    enOperacion.push(Integer.toString(res));
 
                     break;
 
                 case "*":
-                    num1 = Integer.parseInt(temp.pop());
-                    num2 = Integer.parseInt(temp.pop());
+                    num1 = Integer.parseInt(enOperacion.pop());
+                    num2 = Integer.parseInt(enOperacion.pop());
 
                     res = num1 * num2;
 
-                    temp.push(Integer.toString(res));
+                    enOperacion.push(Integer.toString(res));
 
                     break;
 
@@ -132,12 +138,12 @@ public class Calculadora implements iCalculadora {
                 case "7":
                 case "8":
                 case "9":
-                    temp.push(x);
+                    enOperacion.push(x);
                     break;
             }
         }
 
-        int result = Integer.parseInt(temp.pop());
+        int result = Integer.parseInt(enOperacion.pop());
         return result;
 
     }
