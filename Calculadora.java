@@ -54,9 +54,15 @@ public class Calculadora implements iCalculadora {
                 Datos.push(x);
             }
 
+            Stack<String> DatosInverso = new Stack<String>();
+
+            while(!Datos.empty()) {
+                DatosInverso.push(Datos.pop());
+            }
+
             scanLinea.close();
 
-            int res = operar(Datos);
+            int res = operar(DatosInverso);
 
             result = result + "Resultado: " + Integer.toString(res) + "\n";
         }
@@ -66,7 +72,73 @@ public class Calculadora implements iCalculadora {
 
     @Override
     public int operar(iStack<String> Datos) {
-        // TODO Auto-generated method stub
-        return 0;
+        Stack<String> temp = new Stack<String>();
+        
+        while (!Datos.empty()) {
+            String x = Datos.pop();
+            int num1;
+            int num2;
+            int res;
+
+
+            switch (x) {
+                case "+":
+                    num1 = Integer.parseInt(temp.pop());
+                    num2 = Integer.parseInt(temp.pop());
+
+                    res = num1 + num2;
+
+                    temp.push(Integer.toString(res));
+
+                    break;
+
+                case "-":
+                    num1 = Integer.parseInt(temp.pop());
+                    num2 = Integer.parseInt(temp.pop());
+
+                    res = num1 - num2;
+
+                    temp.push(Integer.toString(res));
+
+                    break;
+
+                case "/":
+                    num1 = Integer.parseInt(temp.pop());
+                    num2 = Integer.parseInt(temp.pop());
+
+                    res = num1 / num2;
+
+                    temp.push(Integer.toString(res));
+
+                    break;
+
+                case "*":
+                    num1 = Integer.parseInt(temp.pop());
+                    num2 = Integer.parseInt(temp.pop());
+
+                    res = num1 * num2;
+
+                    temp.push(Integer.toString(res));
+
+                    break;
+
+                case "0":
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                    temp.push(x);
+                    break;
+            }
+        }
+
+        int result = Integer.parseInt(temp.pop());
+        return result;
+
     }
 }
