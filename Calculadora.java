@@ -91,6 +91,8 @@ public class Calculadora implements iCalculadora {
 
         String result = "";
 
+        int operacionesRealizadas = 0;
+
         while(LineasInverso.size() > 0) { //Se repite por cada linea de postfix
             String Linea = LineasInverso.pop(); //Obtiene la operación a realizar
             Stack<String> Datos = new Stack<String>();
@@ -112,11 +114,12 @@ public class Calculadora implements iCalculadora {
 
             int res = operar(DatosInverso); //Obtiene el resultado de la operación del stack
 
-            result = result + "Resultado: " + Integer.toString(res) + "\n"; //Añade el resultado al string
+            operacionesRealizadas++;
+            result = result + "Resultado operación " + operacionesRealizadas + ": " + Integer.toString(res) + "\n"; //Añade el resultado al string
         }
 
         archivo.close(); //Cierra el scanner
-        return result; //Devuelve el resultado
+        return "\n" + result; //Devuelve el resultado
     }
 
     @Override
@@ -131,15 +134,15 @@ public class Calculadora implements iCalculadora {
             return 0;
         }
 
-
         Stack<String> enOperacion = new Stack<String>(); 
-        
+
+        System.out.println("\nOperaciones:");
+
         while (!Datos.empty()) { //Mientras el stack no esta vacio
             String x = Datos.pop().toString(); //Último dato obtenido del stack
             int num1; //Primer número para la operación
             int num2; //Segundo número para la operación
             int res; //Resultado de la operación
-
 
             switch (x) {
                 case "+": //Si es suma
@@ -147,6 +150,8 @@ public class Calculadora implements iCalculadora {
                     num2 = Integer.parseInt(enOperacion.pop());
 
                     res = num1 + num2;
+
+                    System.out.println("Se realizó una suma de " + num1 + " + " + num2 + " con resultado " + res);
 
                     enOperacion.push(Integer.toString(res));
 
@@ -158,6 +163,8 @@ public class Calculadora implements iCalculadora {
 
                     res = num1 - num2;
 
+                    System.out.println("Se realizó una resta de " + num1 + " - " + num2 + " con resultado " + res);
+
                     enOperacion.push(Integer.toString(res));
 
                     break;
@@ -168,6 +175,8 @@ public class Calculadora implements iCalculadora {
 
                     res = num1 / num2;
 
+                    System.out.println("Se realizó una división de " + num1 + " / " + num2 + " con resultado " + res);
+
                     enOperacion.push(Integer.toString(res));
 
                     break;
@@ -177,6 +186,8 @@ public class Calculadora implements iCalculadora {
                     num2 = Integer.parseInt(enOperacion.pop());
 
                     res = num1 * num2;
+
+                    System.out.println("Se realizó una multiplicación de " + num1 + " x " + num2 + " con resultado " + res);
 
                     enOperacion.push(Integer.toString(res));
 
@@ -194,6 +205,7 @@ public class Calculadora implements iCalculadora {
                 case "8":
                 case "9":
                     enOperacion.push(x); //Añade el número al stack de operaciones
+                    System.out.println("Se añadió un "+ x + " a la pila");
                     break;
             }
         }
