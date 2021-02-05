@@ -14,7 +14,7 @@ public class Stack<E> implements iStack<E> {
 
     @Override
     public E peek() {  
-        return(datos.remove(datos.size() - 1));
+        return(datos.get(datos.size() - 1));
     }
 
     @Override
@@ -29,6 +29,6 @@ public class Stack<E> implements iStack<E> {
 
     @Override
     public E pop() {
-        return datos.remove(datos.size() - 1);
+        return (datos.remove(datos.size() - 1));
     }
 }

@@ -51,7 +51,7 @@ public class Calculadora implements iCalculadora {
         try {
             archivo = new Scanner(new File(file));
         } catch(FileNotFoundException e) {
-            System.out.println("Archivo no encontrado");
+            return("Archivo no encontrado");
         }    
 
         Stack<String> Lineas = new Stack<String>();
@@ -94,11 +94,17 @@ public class Calculadora implements iCalculadora {
             result = result + "Resultado: " + Integer.toString(res) + "\n";
         }
 
+        archivo.close();
         return result;
     }
 
     @Override
     public int operar(iStack<String> Datos) {
+        if (Datos.size() == 0) {
+            return 0;
+        }
+
+
         Stack<String> enOperacion = new Stack<String>();
         
         while (!Datos.empty()) {
