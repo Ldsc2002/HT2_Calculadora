@@ -120,7 +120,7 @@ public class Calculadora implements iCalculadora {
     }
 
     @Override
-    public int operar(iStack<String> Datos) {
+    public int operar(iStack Datos) {
         /**
          * Devuelve el resultado de las operaciones realizadas con un stack
          * @param Datos Los datos a utilizar para las operaciones
@@ -135,7 +135,7 @@ public class Calculadora implements iCalculadora {
         Stack<String> enOperacion = new Stack<String>(); 
         
         while (!Datos.empty()) { //Mientras el stack no esta vacio
-            String x = Datos.pop(); //Último dato obtenido del stack
+            String x = Datos.pop().toString(); //Último dato obtenido del stack
             int num1; //Primer número para la operación
             int num2; //Segundo número para la operación
             int res; //Resultado de la operación
