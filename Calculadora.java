@@ -1,6 +1,6 @@
 /**
- * Implementa la interfaz de iCalculadora.
- * Se encarga de decodificar los datos y hacer las operaciones correspondientes.
+ * Implementa la interfaz de iCalculadora
+ * Se encarga de decodificar los datos y hacer las operaciones correspondientes
  * @author Luis Santos
  * @version 1.0
 */
@@ -36,86 +36,113 @@ public class Calculadora implements iCalculadora {
 
     @Override
     public int multiplicacion(int x, int y) {
+        /**
+         * Devuelve el resultado de una multiplicación entre dos números
+         * @param x El primer número a multiplicar
+         * @param y El segundo número a multiplicar
+         * @return El resultado de la multiplicación de X * Y
+         */
+
         return (x * y);
     }
 
     @Override
     public int division(int x, int y) {
+        /**
+         * Devuelve el resultado de una división entre dos números
+         * @param x el numero a dividir
+         * @param y El divisor
+         * @return El resultado de la división de X / Y
+         */
+
         return (x / y);
     }
 
     @Override
     public String decode(String file) {
+        /**
+         * Devuelve un string con los resultados de las operaciones realizadas
+         * El resultado de cada operación es indicado en una nueva linea
+         * @param file El archivo a decidificar y operar
+         * @return Los resultados de las operaciones realizadas
+         */
+
         Scanner archivo = new Scanner(System.in);
 
-        try {
-            archivo = new Scanner(new File(file));
+        try { //Intenta accesar el archivo
+            archivo = new Scanner(new File(file)); //Crea un scanner que lee el archivo
         } catch(FileNotFoundException e) {
             return("Archivo no encontrado");
         }    
 
         Stack<String> Lineas = new Stack<String>();
-        archivo.useDelimiter("\n");
+        archivo.useDelimiter("\n"); //Separa los datos en el line break
 
-        while(archivo.hasNext()) {
-            String x = archivo.next();
-            Lineas.push(x);
+        while(archivo.hasNext()) { //Mientras hayan más lineas
+            String x = archivo.next();  
+            Lineas.push(x); //Añade el  archivo al stack
         }
 
         Stack<String> LineasInverso = new Stack<String>();
 
-        while(!Lineas.empty()) {
+        while(!Lineas.empty()) { //Crea un stack inverso
             LineasInverso.push(Lineas.pop());
         }
 
         String result = "";
 
-        while(LineasInverso.size() > 0) {
-            String Linea = LineasInverso.pop();
+        while(LineasInverso.size() > 0) { //Se repite por cada linea de postfix
+            String Linea = LineasInverso.pop(); //Obtiene la operación a realizar
             Stack<String> Datos = new Stack<String>();
 
             Scanner scanLinea = new Scanner(Linea);
 
-            while(scanLinea.hasNext()) {
-                String x = scanLinea.next();
-                Datos.push(x);
+            while(scanLinea.hasNext()) { //Por cada caracter
+                String x = scanLinea.next(); 
+                Datos.push(x); //Añade el  dato al stack
             }
 
             Stack<String> DatosInverso = new Stack<String>();
 
-            while(!Datos.empty()) {
+            while(!Datos.empty()) { //Invierte el stack
                 DatosInverso.push(Datos.pop());
             }
 
-            scanLinea.close();
+            scanLinea.close(); //Cierra el scanner
 
-            int res = operar(DatosInverso);
+            int res = operar(DatosInverso); //Obtiene el resultado de la operación del stack
 
-            result = result + "Resultado: " + Integer.toString(res) + "\n";
+            result = result + "Resultado: " + Integer.toString(res) + "\n"; //Añade el resultado al string
         }
 
-        archivo.close();
-        return result;
+        archivo.close(); //Cierra el scanner
+        return result; //Devuelve el resultado
     }
 
     @Override
     public int operar(iStack<String> Datos) {
-        if (Datos.size() == 0) {
+        /**
+         * Devuelve el resultado de las operaciones realizadas con un stack
+         * @param Datos Los datos a utilizar para las operaciones
+         * @return El resultado de todas las operaciones realizadas
+         */
+
+        if (Datos.size() == 0) { //Verifica si el stack esta vacío
             return 0;
         }
 
 
-        Stack<String> enOperacion = new Stack<String>();
+        Stack<String> enOperacion = new Stack<String>(); 
         
-        while (!Datos.empty()) {
-            String x = Datos.pop();
-            int num1;
-            int num2;
-            int res;
+        while (!Datos.empty()) { //Mientras el stack no esta vacio
+            String x = Datos.pop(); //Último dato obtenido del stack
+            int num1; //Primer número para la operación
+            int num2; //Segundo número para la operación
+            int res; //Resultado de la operación
 
 
             switch (x) {
-                case "+":
+                case "+": //Si es suma
                     num1 = Integer.parseInt(enOperacion.pop());
                     num2 = Integer.parseInt(enOperacion.pop());
 
@@ -125,7 +152,7 @@ public class Calculadora implements iCalculadora {
 
                     break;
 
-                case "-":
+                case "-": //Si es resta
                     num1 = Integer.parseInt(enOperacion.pop());
                     num2 = Integer.parseInt(enOperacion.pop());
 
@@ -135,7 +162,7 @@ public class Calculadora implements iCalculadora {
 
                     break;
 
-                case "/":
+                case "/": //Si es división
                     num1 = Integer.parseInt(enOperacion.pop());
                     num2 = Integer.parseInt(enOperacion.pop());
 
@@ -145,7 +172,7 @@ public class Calculadora implements iCalculadora {
 
                     break;
 
-                case "*":
+                case "*": //Si es multiplicación
                     num1 = Integer.parseInt(enOperacion.pop());
                     num2 = Integer.parseInt(enOperacion.pop());
 
@@ -155,6 +182,7 @@ public class Calculadora implements iCalculadora {
 
                     break;
 
+                //Si es un número
                 case "0":
                 case "1":
                 case "2":
@@ -165,13 +193,13 @@ public class Calculadora implements iCalculadora {
                 case "7":
                 case "8":
                 case "9":
-                    enOperacion.push(x);
+                    enOperacion.push(x); //Añade el número al stack de operaciones
                     break;
             }
         }
 
         int result = Integer.parseInt(enOperacion.pop());
-        return result;
+        return result; //Devuelve el resultado de la operación
 
     }
 }
