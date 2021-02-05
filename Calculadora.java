@@ -1,3 +1,10 @@
+/**
+ * Implementa la interfaz de iCalculadora.
+ * Se encarga de decodificar los datos y hacer las operaciones correspondientes.
+ * @author Luis Santos
+ * @version 1.0
+*/
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.File;
@@ -5,11 +12,25 @@ import java.io.File;
 public class Calculadora implements iCalculadora {
     @Override
     public int resta(int x, int y) {
+        /**
+         * Devuelve el resultado de una resta entre dos números
+         * @param x El valor al que se le resta otro numero
+         * @param y El valor que se resta
+         * @return El resultado de la resta de X - Y
+         */
+
         return (x - y);
     }
 
     @Override
     public int suma(int x, int y) {
+        /**
+         * Devuelve el resultado de una suma entre dos números
+         * @param x El primero número a sumar
+         * @param y El segundo número a sumar
+         * @return El resultado de la suma de X + Y
+         */
+
         return (x + y);
     }
 
