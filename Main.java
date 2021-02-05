@@ -6,8 +6,8 @@
 
 public class Main {
     public static void main(String[] args) {
-        Calculadora Calc = new Calculadora();
+        Calculadora Calc = new Calculadora(); //Crea una instancia de la calculadora
 
-        System.out.println(Calc.decode("datos.txt"));
+        System.out.println(Calc.decode("datos.txt")); //Corre decode con el archivo 
     }
 }
