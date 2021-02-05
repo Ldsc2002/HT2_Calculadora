@@ -1,3 +1,10 @@
+/**
+ * Interfaz iStack
+ * Define los métodos de un stack
+ * @author Luis Santos
+ * @version 1.0
+*/
+
 public interface iStack<E> {
    public void push(E item);
    // pre: 

@@ -1,3 +1,9 @@
+/**
+ * Implementa la interfaz iStack
+ * @author Luis Santos
+ * @version 1.0
+*/
+
 import java.util.Vector;
 
 public class Stack<E> implements iStack<E> {

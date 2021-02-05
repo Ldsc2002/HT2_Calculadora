@@ -1,3 +1,10 @@
+/**
+ * Interfaz iCalculadora
+ * Define los métodos de una calculadora
+ * @author Luis Santos
+ * @version 1.0
+*/
+
 public interface iCalculadora {
     public int suma(int x, int y);
     public int resta(int x, int y);
