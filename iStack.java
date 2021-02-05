@@ -9,7 +9,6 @@ public interface iStack<E> {
    public void push(E item);
    // pre: 
    // post: item is added to stack
-   // will be popped next if no intervening push
    
    public E pop();
    // pre: stack is not empty

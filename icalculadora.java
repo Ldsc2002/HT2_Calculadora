@@ -6,12 +6,27 @@
 */
 
 public interface iCalculadora {
-    public int suma(int x, int y); //Devuelve la suma de dos números
-    public int resta(int x, int y); //Devuelve la resta de dos números
-    public int multiplicacion(int x, int y); //Devuelve la multiplicación de dos números
-    public int division(int x, int y); //Devuelve la división entre dos números
+    public int suma(int x, int y); 
+    // pre: Requiere dos numeros
+    // post: Devuelve la suma de dos numeros
 
-    public int operar(iStack x); //Operar recibe un stack en formato postfix, y lo opera para devolver un entero que es igual al valor total de la operación
-    
-    public String decode(String a); //Función que se encarga de leer el archivo y decodificar cada línea para realizar las operaciones de cada una
+    public int resta(int x, int y); 
+    // pre: Requiere dos numeros
+    // post: Devuelve la resta de dos numeros
+
+    public int multiplicacion(int x, int y); 
+    // pre: Requiere dos numeros
+    // post: Devuelve la multiplicación de dos numeros
+
+    public int division(int x, int y); 
+    // pre: Requiere dos numeros
+    // post: Devuelve la división de dos numeros
+
+    public int operar(iStack x); 
+    // pre: Requiere un stack con expresiones en formato postfix
+    // post: Devuelve el resultado de las operaciones en el stack
+
+    public String decode(String a); 
+    // pre: Requiere un string que indica qué archivo va a operar
+    // post: Devuelve un string con el resultado de todas las operaciones
 }
